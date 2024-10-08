@@ -2,7 +2,7 @@
 
 _Sistema de final de curso. Realizado para el manejo e inventariado de discos_
 
-<div style="text-align:center"><img src="https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/Menu%20pricipal.png" /></div>
+<p align="center" width="100%"><img src="https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/Menu%20pricipal.png" /></p>
 
 ## Este es un subtítulo ( ## )
 
