@@ -1,32 +1,173 @@
-# Sistema de inventario de discos
+# CRUD VB.Net - Sistema de inventario de discos
 
 _Sistema de final de curso. Realizado para el manejo e inventariado de discos_
 
 <p align="center" width="100%"><img src="https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/Menu%20pricipal.png" /></p>
 
-## Este es un subtítulo ( ## )
+## Soluciones
 
-_Esta es la descripción del subtitulo, esta propiedad nos permite extendernos de la manera mas prolongada o breve de lo que queremos explicar, y no tiene un limite. Esta sección nos sirve para especificar_
+_Este programa busca solucionar los problemas de gestion de inventario de una tienda de discos. Por lo que con nuestro sistema, buscamos gestionar mediante CRUDs una serie de modulos que facilitan al cliente a manejar de manera efectiva sus datos. Estos modulos son:_
 
-Para marcar con **Negrita** debemos usar los asteriscos (** **)
+* Clientes
+* Categorias
+* Productos 
+* Proveedores
+* Usuarios
 
-## Resaltar en enmarcado
+<p align="center" width="100%"><img src="https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/modulos.png"/></p>
 
-_Si necesitamos resaltar el código en una caja de texto donde este permanesca aislado, podemos utilizar el **asento grave** (```)_
 
-Ejemplo:
+## Metodología de trabajo
+
+_Para la elaboracion del proyecto, se planteo manejar el paradigma de programación de `POO` o `Programación Orientada a Objetos`, esto con el fin de buscar un desarrollo basada en objetos que no permitan el modelaje de `funciones`, `clases`, `métodos` y `formularios` con las cuales construimos la funcionalidad del sistema._
+
+<p align="center" width="100%"><img src="https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/estructura.png" /></p>
+
+### Funciones
+
+_Las **funciones** es el código que nos permite comunicarnos mediante la conexión hacia la `base de datos`, brindando acceso a cada uno de los formularios con los `procedimientos almacenados` creados para dar la funcionalidad de CRUD en cada pantalla del sistema._
+
+_La estructura básica de las **Funciones** para el crud se trabajaron de la siguiente manera:_
+
+**Conexión a BD:**
 ```
-git init
+    Protected Function conectado()
+        Try
+            cnn = New SqlConnection("data source=AquiPonesTuInstanciaEnElServidor; initial catalog=sistema_discos ;integrated security= true")
+            cnn.Open()
+            Return True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+    End Function
 ```
 
-### Tercer subtitulo ( ### )
-
-_Para esta sección, se suelde dar a los detalles técnicos y códigos para procedimientos y iniciación del proyecto. Este proceso se llama **Instalación**_
-
-Ejemplo
+**Desconexión a BD:**
 ```
-pip install python
-python -m pip install Django
+    Protected Function desconectado()
+        Try
+            If cnn.State = ConnectionState.Open Then
+                cnn.Close()
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        End Try
+    End Function
+```
+
+**Crear Variable cmd para utilizar como comando:**
+
+```
+Dim cmd As New SqlCommand
+```
+
+**Mostrar:**
+
+```
+    Public Function mostrar() As DataTable
+        Try
+            conectado()
+            cmd = New SqlCommand("procedimiento_mostrar")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+            If cmd.ExecuteNonQuery Then
+                Dim dt As New DataTable
+                Dim da As New SqlDataAdapter(cmd)
+                da.Fill(dt)
+                Return dt
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return Nothing
+        Finally
+            desconectado()
+        End Try
+    End Function
+```
+
+**Ingresar:**
+```
+    Public Function insertar(ByVal dts As vMetodo) As Boolean
+        Try
+            conectado()
+            cmd = New SqlCommand("procedimiento_insertar")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+            cmd.Parameters.AddWithValue("@variableA", dts.gvariableA)
+            cmd.Parameters.AddWithValue("@variableB", dts.gvariableB)
+            cmd.Parameters.AddWithValue("@variableC", dts.gvariableC)
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            desconectado()
+        End Try
+    End Function
+```
+
+**Editar:**
+
+```
+    Public Function editar(ByVal dts As vMetodo) As Boolean
+        Try
+            conectado()
+            cmd = New SqlCommand("procedimiento_editar")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+            cmd.Parameters.AddWithValue("@id", dts.gid)
+            cmd.Parameters.AddWithValue("@variableA", dts.gvariableA)
+            cmd.Parameters.AddWithValue("@variableB", dts.gvariableB)
+            cmd.Parameters.AddWithValue("@variableC", dts.gvariableC)
+
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            desconectado()
+        End Try
+    End Function
+```
+
+**Eliminar:**
+```
+    Public Function eliminar(ByVal dts As vMetodo) As Boolean
+        Try
+            conectado()
+            cmd = New SqlCommand("procedimiento_eliminar")
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Connection = cnn
+            cmd.Parameters.Add("@id", SqlDbType.NVarChar, 50).Value = dts.gid
+            
+            If cmd.ExecuteNonQuery Then
+                Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            Return False
+        Finally
+            desconectado()
+        End Try
+    End Function
 ```
 
 ## Otras secciones para el README
