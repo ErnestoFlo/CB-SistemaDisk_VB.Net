@@ -1,6 +1,8 @@
-# Título principal del proyecto ( # )
+# Sistema de inventario de discos
 
-_Párrafo para la descripción de secciones o del proyecto en general (Se hace con guión bajo al inicio y fin). Este apartado nos sirve para dar una descripción general del proyecto_
+_Sistema de final de curso. Realizado para el manejo e inventariado de discos_
+
+![prueba](https://raw.githubusercontent.com/ErnestoFlo/CB-SistemaDisk_VB.Net/refs/heads/master/Documentacion/Menu%20pricipal.png "prueba")
 
 ## Este es un subtítulo ( ## )
 
