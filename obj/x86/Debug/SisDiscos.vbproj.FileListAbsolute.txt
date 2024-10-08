@@ -1,0 +1,32 @@
+E:\12° BTP Informática 2\Programación\II Semestre\II Parcial\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.Resources.resources
+E:\12° BTP Informática 2\Programación\II Semestre\II Parcial\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmcliente.resources
+E:\12° BTP Informática 2\Programación\II Semestre\II Parcial\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.GenerateResource.Cache
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.Resources.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmcliente.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmproducto.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmproveedor.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmtipo.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmusuario.resources
+E:\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.GenerateResource.Cache
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.AssemblyReference.cache
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.SuggestedBindingRedirects.cache
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.Resources.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmcliente.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmproducto.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmproveedor.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmtipo.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.GenerateResource.cache
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.vbproj.CoreCompileInputs.cache
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\bin\Debug\SisDiscos.exe.config
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\bin\Debug\SisDiscos.exe
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\bin\Debug\SisDiscos.pdb
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\bin\Debug\SisDiscos.xml
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.exe
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.xml
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.pdb
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmlogin.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmusuario.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmmenuprincipal.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmbackup.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmbienvenida.resources
+C:\Users\ernes\OneDrive\Escritorio\py\Sistema Discos Material\SisDiscos\obj\x86\Debug\SisDiscos.frmacercade.resources
