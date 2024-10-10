@@ -68,7 +68,7 @@ Dim cmd As New SqlCommand
 
 **Mostrar:**
 
-```
+```vb
     Public Function mostrar() As DataTable
         Try
             conectado()
@@ -234,8 +234,8 @@ _Los `constructores` son los métodos encargados de inicializar el objeto que se
     End Sub
 ```
 
-[!NOTE]
-Cabe recalcar que incluye un contructor vacío o sin parámetros por que es un ejemplo de `sobrecarga de constructores` el cual tiene propósitos muy útiles como los siguientes:_
+> [!NOTE]
+> Cabe recalcar que incluye un contructor vacío o sin parámetros por que es un ejemplo de `sobrecarga de constructores` el cual tiene propósitos muy útiles como los siguientes:_
 
 * **Flexibilidad de creación de objetos:** Le brindas al programador la opción de crear un objeto sin la necesidad de proporcinar la totalidad de las variables, además de poder asignar los valores posteriormente por medio de los `métodos`.
 * **Compatibilidad con librerías y Framework:** Algunos frameworks usados para la `serialización/deserialización`, mapeo de bases de datos `ORM` o `interfaces gráficas` requieren este constructor para instanciar objetos.
