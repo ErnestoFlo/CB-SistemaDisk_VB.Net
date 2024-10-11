@@ -29,7 +29,7 @@ _Las **funciones** es el código que nos permite comunicarnos mediante la conexi
 
 _La estructura básica de las **Funciones** para el crud se trabajaron de la siguiente manera:_
 
-**Conexión a BD:**
+#### **Conexión a BD:**
 ```vb
     Protected Function conectado()
         Try
@@ -43,7 +43,7 @@ _La estructura básica de las **Funciones** para el crud se trabajaron de la sig
     End Function
 ```
 
-**Desconexión a BD:**
+####  **Desconexión a BD:**
 ```vb
     Protected Function desconectado()
         Try
@@ -60,7 +60,7 @@ _La estructura básica de las **Funciones** para el crud se trabajaron de la sig
     End Function
 ```
 
-**Crear Variable cmd para utilizar como comando:**
+#### **Crear Variable cmd para utilizar como comando:**
 
 ```vb
 Dim cmd As New SqlCommand
@@ -92,7 +92,7 @@ Dim cmd As New SqlCommand
     End Function
 ```
 
-**Ingresar:**
+#### **Ingresar:**
 ```vb
     Public Function insertar(ByVal dts As vMetodo) As Boolean
         Try
@@ -118,7 +118,7 @@ Dim cmd As New SqlCommand
     End Function
 ```
 
-**Editar:**
+#### **Editar:**
 
 ```vb
     Public Function editar(ByVal dts As vMetodo) As Boolean
@@ -146,7 +146,7 @@ Dim cmd As New SqlCommand
     End Function
 ```
 
-**Eliminar:**
+#### **Eliminar:**
 ```vb
     Public Function eliminar(ByVal dts As vMetodo) As Boolean
         Try
@@ -173,7 +173,7 @@ Dim cmd As New SqlCommand
 
 _Los **métodos** son las variables centrales, que nos permite la comunicación entre la `base de datos` y el `entorno intereactivo` de nuestro sistema interactuando con estas mediate `ByVal dts As vMetodo` en las funciones. Aqui es donde "setteamos" variables para guardar información y "getteamos" para leer los datos que poseen estos campos. Estos métodos se alamcenanan en la carpeta `Lógica`_
 
-**Ejemplo:**
+#### **Ejemplo:**
 
 ```vb
     Dim id As Integer
@@ -216,7 +216,7 @@ _Los **métodos** son las variables centrales, que nos permite la comunicación 
     End Property
 ```
 
-**Constructores:**
+#### **Constructores:**
 
 _Los `constructores` son los métodos encargados de inicializar el objeto que se acaba de crear y es donde se recopilan los datos para enviar a BD mediante nuestra instancia. Ejemplo:_
 
@@ -234,7 +234,6 @@ _Los `constructores` son los métodos encargados de inicializar el objeto que se
     End Sub
 ```
 
-<br/>
 > [!NOTE]
 > Cabe recalcar que incluye un contructor vacío o sin parámetros por que es un ejemplo de `sobrecarga de constructores` el cual tiene propósitos muy útiles como los siguientes:_
 
@@ -251,8 +250,9 @@ _Los `Formularios` son la parte visual del proyecto, y es donde validamos la man
 
 _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las cuales son asignadas a los componentes. Estas son las funciones:_
 
-**Llenar información en componentes de DataGridView**
-_Se compone de una función que se encarga de llenar los datos de los componentes de un `DataGridView` en este caso ejemplificado como **DataListado** que al dar click en uno de sus datos, llena automaticamente los componente como es este caso, cajas de texto con su información._
+#### **Llenar información en componentes de DataGridView**
+_Se compone de una función que se encarga de llenar los datos de los componentes de un `DataGridView` en este caso ejemplificado como **DataListado** que al dar click en uno de sus datos, llena automaticamente los componente como es este caso, cajas de texto con su información_
+
 >[!IMPORTANT]
 >_Este código es crucial para la funcionalidad de `Eliminar` y `Editar` ya que es por esta funcion con la que el sistema mapea el dato que quiere aplicar este cambio en la base de datos._
 
@@ -267,7 +267,7 @@ _Se compone de una función que se encarga de llenar los datos de los componente
     End Sub
 ```
 
-**Mostrar y actualizar datos**
+#### **Mostrar y actualizar datos**
 _Esta es la función encargada de mostrar los datos en el `DataGridView`._
 
 ```vb
@@ -300,7 +300,7 @@ _Esta es la función encargada de mostrar los datos en el `DataGridView`._
     End Sub
 ```
 
-**Funciones de buscador:**
+#### **Funciones de buscador:**
 _Esta función se encarga de filtrar la información por medio de dos componentes, los cuales son un `ComboBox` nombrado como **cboCampo** con las opciones posibles con las que filtrará los datos, estos indicados con el título de las columnas, y la información se clasificará gracias al componente `TextBox` el cual es nombrado como **txtBuscar** el cual es validado mediadno un `If` que nos da la pauta de los datos mapeado con una similitud con lo que el usario esta buscando._
 
 ```vb
@@ -330,7 +330,7 @@ _Esta función se encarga de filtrar la información por medio de dos componente
     End Sub
 ```
 
-**Ejemplo de validación en componentes:**
+#### **Ejemplo de validación en componentes:**
 _Este es un ejemplo de la estructura con la que se valida que los componentes dentro del formulario se ingresen vacíos._
 
 ```vb
@@ -343,7 +343,7 @@ _Este es un ejemplo de la estructura con la que se valida que los componentes de
     End Sub
 ```
 
-**Limpiar componentes**
+#### **Limpiar componentes**
 _Funcion integrada para resetear el contenido de los componentes._
 
 
@@ -357,7 +357,7 @@ _Funcion integrada para resetear el contenido de los componentes._
     End Sub
 ```
 
-**Guardar información**
+#### **Guardar información**
 _Esta función, es la encargada de la asignación del proceso de guardar con el evento Click de un botón, con esto validamos el valor del contenido ingresado mediante el usuario a nuestro formulario. Procediendo asi a llamar las `Funciones` y `Métodos` aplicando asi sus funcionalidades en esta etapa del proceso, además de aplicar validadores como el `TryCatch` que dan un mensaje visual al usuario en caso de que ocurra un error. El objetivo principal de esta función es la de guardar datos en la `Base de Datos`_
 
 ```vb
@@ -390,7 +390,7 @@ _Esta función, es la encargada de la asignación del proceso de guardar con el 
     End Sub 
 ```
 
-**Editar información:**
+#### **Editar información:**
 _Esta función, es la encargada de edita la información de un dato seleccionado por el usuario mediante el evento Click de un botón. Al igual que la funcion de `Guardar`, validamos el valor del contenido que desea editar y el ingresado para su posterior edición. Procediendo asi a llamar las `Funciones` y `Métodos` aplicando asi sus funcionalidades, además de seguir aplicar validadores como el `TryCatch`. El objetivo principal de esta función es la de editar datos en la `Base de Datos`_
 
 ```vb
@@ -427,7 +427,7 @@ _Esta función, es la encargada de edita la información de un dato seleccionado
     End Sub
 ```
 
-**Eliminar información:**
+#### **Eliminar información:**
 _Por último el proceso de Eliminar se secciona en 3 funcionalidad, La primera es la encargada de confirmar que el usuario desea eliminar un dato, esto con la funcion de `CheckedChanged`, una vez que el usuario indica que desea eliminar el dato, se habilida la columna de **Eliminar** en el `DataGridView` y al seleccionarla, ya tendiramos la opcion de Eliminar activada la cual consiste en confimar mediante el evento Click de un botón que el usuario desea eliminar el dato en cuestion dando asi inicio al procediendo de llamar las `Funciones` y `Métodos` para aplicar  la funcionalidades de eliminar. El objetivo principal de esta función es la de eliminar datos en la `Base de Datos`_
 
 ```vb
