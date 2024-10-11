@@ -251,7 +251,10 @@ _Los `Formularios` son la parte visual del proyecto, y es donde validamos la man
 
 _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las cuales son asignadas a los componentes. Estas son las funciones:_
 
-**Mostrar información en DataGridView**
+**Llenar información en componentes de DataGridView**
+_Se compone de una función que se encarga de llenar los datos de los componentes de un `DataGridView` en este caso ejemplificado como **DataListado** que al dar click en uno de sus datos, llena automaticamente los componente como es este caso, cajas de texto con su información._
+>[!IMPORTANT]
+>_Este código es crucial para la funcionalidad de `Eliminar` y `Editar` ya que es por esta funcion con la que el sistema mapea el dato que quiere aplicar este cambio en la base de datos._
 
 ```vb
     Private Sub DataListado_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataListado.CellClick
@@ -265,6 +268,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Mostrar y actualizar datos**
+_Esta es la función encargada de mostrar los datos en el `DataGridView`._
 
 ```vb
     Private Sub Mostrar()
@@ -290,9 +294,14 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
         btnEditar.Visible = False
         Buscar()
     End Sub
+
+    Private Sub ocultar_columnas()
+        DataListado.Columns(1).Visible = False
+    End Sub
 ```
 
 **Funciones de buscador:**
+_Esta función se encarga de filtrar la información por medio de dos componentes, los cuales son un `ComboBox` nombrado como **cboCampo** con las opciones posibles con las que filtrará los datos, estos indicados con el título de las columnas, y la información se clasificará gracias al componente `TextBox` el cual es nombrado como **txtBuscar** el cual es validado mediadno un `If` que nos da la pauta de los datos mapeado con una similitud con lo que el usario esta buscando._
 
 ```vb
     Private Sub Buscar()
@@ -314,9 +323,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
         End Try
     End Sub
 
-    Private Sub ocultar_columnas()
-        DataListado.Columns(1).Visible = False
-    End Sub
+    
 
     Private Sub txtBuscar_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBuscar.TextChanged
         Buscar()
@@ -324,6 +331,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Ejemplo de validación en componentes:**
+_Este es un ejemplo de la estructura con la que se valida que los componentes dentro del formulario se ingresen vacíos._
 
 ```vb
     Private Sub txtComponente_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtComponente.Validating
@@ -336,6 +344,8 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Limpiar componentes**
+_Funcion integrada para resetear el contenido de los componentes._
+
 
 ```vb
     Private Sub Limpiar()
@@ -348,6 +358,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Guardar información**
+_Esta función, es la encargada de la asignación del proceso de guardar con el evento Click de un botón, con esto validamos el valor del contenido ingresado mediante el usuario a nuestro formulario. Procediendo asi a llamar las `Funciones` y `Métodos` aplicando asi sus funcionalidades en esta etapa del proceso, además de aplicar validadores como el `TryCatch` que dan un mensaje visual al usuario en caso de que ocurra un error. El objetivo principal de esta función es la de guardar datos en la `Base de Datos`_
 
 ```vb
     Private Sub btnGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
@@ -380,6 +391,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Editar información:**
+_Esta función, es la encargada de edita la información de un dato seleccionado por el usuario mediante el evento Click de un botón. Al igual que la funcion de `Guardar`, validamos el valor del contenido que desea editar y el ingresado para su posterior edición. Procediendo asi a llamar las `Funciones` y `Métodos` aplicando asi sus funcionalidades, además de seguir aplicar validadores como el `TryCatch`. El objetivo principal de esta función es la de editar datos en la `Base de Datos`_
 
 ```vb
     Private Sub btnEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditar.Click
@@ -416,6 +428,7 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
 ```
 
 **Eliminar información:**
+_Por último el proceso de Eliminar se secciona en 3 funcionalidad, La primera es la encargada de confirmar que el usuario desea eliminar un dato, esto con la funcion de `CheckedChanged`, una vez que el usuario indica que desea eliminar el dato, se habilida la columna de **Eliminar** en el `DataGridView` y al seleccionarla, ya tendiramos la opcion de Eliminar activada la cual consiste en confimar mediante el evento Click de un botón que el usuario desea eliminar el dato en cuestion dando asi inicio al procediendo de llamar las `Funciones` y `Métodos` para aplicar  la funcionalidades de eliminar. El objetivo principal de esta función es la de eliminar datos en la `Base de Datos`_
 
 ```vb
     Private Sub cbEliminar_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbEliminar.CheckedChanged
@@ -479,6 +492,11 @@ _Las herramientas necesarias para el desarrollo, compilación, manejo y gestión
 * [SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) - Administrador de SQL
 * [VB](https://learn.microsoft.com/es-es/dotnet/visual-basic/) - Lenguaje de programación
 * [SQL Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads) - Base de datos
+
+### Pasos para la instalación
+_Para comenzar, debemos contar con el código del sistema, y para esto, se cuenta con este repositorio de github:_
+
+* [Descargar](https://github.com/ErnestoFlo/CB-SistemaDisk_VB.Net/archive/refs/heads/master.zip)
 
 ## Autores
 
