@@ -234,6 +234,7 @@ _Los `constructores` son los métodos encargados de inicializar el objeto que se
     End Sub
 ```
 
+<br/>
 > [!NOTE]
 > Cabe recalcar que incluye un contructor vacío o sin parámetros por que es un ejemplo de `sobrecarga de constructores` el cual tiene propósitos muy útiles como los siguientes:_
 
@@ -251,6 +252,20 @@ _Los `Formularios` son la parte visual del proyecto, y es donde validamos la man
 _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las cuales son asignadas a los componentes. Estas son las funciones:_
 
 **Mostrar información en DataGridView**
+
+```vb
+    Private Sub DataListado_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataListado.CellClick
+        txtid.Text = DataListado.SelectedCells.Item(1).Value
+        txtComponenteA.Text = DataListado.SelectedCells.Item(2).Value
+        txtComponenteB.Text = DataListado.SelectedCells.Item(3).Value
+        txtComponenteC.Text = DataListado.SelectedCells.Item(4).Value
+        btnEditar.Visible = True
+        btnGuardar.Visible = False
+    End Sub
+```
+
+**Mostrar y actualizar datos**
+
 ```vb
     Private Sub Mostrar()
         Try
@@ -277,61 +292,201 @@ _Para darle la funcionalidad al sistema, utilizamos una serie de funciones las c
     End Sub
 ```
 
-## Otras secciones para el README
+**Funciones de buscador:**
 
-_Estas son otras secciones que se pueden incluir par adetallar el desarrollo y aplicativo del sistema en el documento_
+```vb
+    Private Sub Buscar()
+        Try
+            Dim ds As New DataSet
+            ds.Tables.Add(dt.Copy)
+            Dim dv As New DataView(ds.Tables(0))
+            dv.RowFilter = cboCampo.Text & " like '" & txtBuscar.Text & "%'"
+            If dv.Count <> 0 Then
+                inexistente.Visible = False
+                DataListado.DataSource = dv
+                ocultar_columnas()
+            Else
+                inexistente.Visible = True
+                DataListado.DataSource = Nothing
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 
-### Ejecución de pruebas
+    Private Sub ocultar_columnas()
+        DataListado.Columns(1).Visible = False
+    End Sub
 
-_Explica como aplicar y el por que de las pruebas del sistema_
-
-### Pruebas end-to-end (E2E)
-
-_Esta es la esquematización del flujo que lleva el proyecto, dinde se explica el por qué de su funcionamiento. Además de brindar un simulacro del comportamiento completo del sistema, de inicio a fin_
-
-### Estilo de codificación
-
-_Es una explicación	de la nomenclatura y tipo de orden que se llevo durante el desarrollo del proyecto_
-
-Ejemplo de nomenclatura de modelos:
+    Private Sub txtBuscar_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtBuscar.TextChanged
+        Buscar()
+    End Sub
 ```
-class ejemplo_model (models.Model):
-    id_ejemplo	= models.AutoField(PrimaryKey = True)
-    nombre = models.CharField(max_length=30)
-    apellido = models.CharField(max_length=30)
+
+**Ejemplo de validación en componentes:**
+
+```vb
+    Private Sub txtComponente_Validating(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles txtComponente.Validating
+        If DirectCast(sender, TextBox).Text.Length > 0 Then
+            Me.erroricono.SetError(sender, "")
+        Else
+            Me.erroricono.SetError(sender, "Ingrese un valor valido, este dato es obligatorio")
+        End If
+    End Sub
 ```
 
-## Despliegue
+**Limpiar componentes**
 
-_Son las configuraciones necesarias para poner en producción el proyecto_
+```vb
+    Private Sub Limpiar()
+        btnGuardar.Visible = True
+        btnEditar.Visible = False
+        txtComponenteA.Text = ""
+        txtComponenteB.Text = ""
+        txtComponenteC.Text = ""
+    End Sub
+```
 
-## Construido con:
+**Guardar información**
 
-_Se mencionan las herramientas con las que se desarrollo la app. Nota: Para poner una lista en el rreadme debemos usar un **asterisco** y para agregar un link usamos **Corchetes y Paréntesis**_
+```vb
+    Private Sub btnGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuardar.Click
+        If Me.ValidateChildren = True And txtComponenteA.Text <> "" And txtComponenteB.Text <> "" And txtComponenteC.Text <> "" Then
+            Try
+                Dim dts As New vMetodo
+                Dim func As New ffuncion
+                dts.gvariableA = txtComponenteA.Text
+                dts.gvariableB = txtComponenteB.Text
+                dts.gvariableC = txtComponenteC.Text
+  
+                If func.insertar(dts) Then
+                    MsgBox("Dato registrado correctamente", 0 + 64, "Proceso...")
 
-* [Django](https://www.djangoproject.com/) - Framework utilizado
-* [Python](https://www.python.org/) - Manejador de dependencias
+                    Mostrar()
+                    Limpiar()
+                Else
+                    MsgBox("Dato no registrado, intente de nuevo !!!", 0 + 16, "Error en ingreso...")
 
-## Otras campos a mencionar
+                    Mostrar()
+                    Limpiar()
+                End If
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Else
+            MsgBox("Falta ingresar algunos datos !!!", 0 + 16, "Error en ingreso...")
+        End If
+    End Sub 
+```
 
-* Contribuyendo: Algunas directrices para leer detalles del codigo
-* Wiki: Más informacion de como utilizar nuestro proyecto
-* Versionado: Metodologia que se emplea para dar los tags de actualizacion de versiones del proyecto
+**Editar información:**
+
+```vb
+    Private Sub btnEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditar.Click
+        Dim result As Integer
+        result = MsgBox("¿Realmente desea editar estos datos?", 4 + 32 + 256, "Confirme...")
+        If result = 6 Then
+            If Me.ValidateChildren = True And txtComponenteA.Text <> "" And txtComponenteB.Text <> "" And txtComponenteC.Text <> "" Then
+                Try
+                    Dim dts As New vMetodo
+                    Dim func As New ffuncion
+                    dts.gvariableA = txtComponenteA.Text
+                    dts.gvariableB = txtComponenteB.Text
+                    dts.gvariableC = txtComponenteC.Text
+
+                    If func.editar(dts) Then
+                        MsgBox("Datos modificados correctamente", 0 + 64, "Proceso...")
+
+                        Mostrar()
+                        Limpiar()
+                    Else
+                        MsgBox("Datos no modificados, intente de nuevo", 0 + 16, "Error en ingreso...")
+
+                        Mostrar()
+                        Limpiar()
+                    End If
+                Catch ex As Exception
+                    MsgBox(ex.Message)
+                End Try
+            Else
+                MsgBox("Falta ingresar algunos datos...", 0 + 16, "Error en ingreso...")
+            End If
+        End If
+    End Sub
+```
+
+**Eliminar información:**
+
+```vb
+    Private Sub cbEliminar_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles cbEliminar.CheckedChanged
+        If cbEliminar.CheckState = CheckState.Checked Then
+            DataListado.Columns.Item("Eliminar").Visible = True
+        Else
+            DataListado.Columns.Item("Eliminar").Visible = False
+        End If
+    End Sub
+
+    Private Sub DataListado_CellContentClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataListado.CellContentClick
+        If e.ColumnIndex = Me.DataListado.Columns.Item("Eliminar").Index Then
+            Dim chkcel As DataGridViewCheckBoxCell = Me.DataListado.Rows(e.RowIndex).Cells("Eliminar")
+            chkcel.Value = Not chkcel.Value
+        End If
+    End Sub
+
+    Private Sub btnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEliminar.Click
+        Dim result As Integer
+        result = MsgBox("¿Realmente desea eliminar este dato?", 4 + 32 + 256, "Confirme...")
+        If result = 6 Then
+            Try
+                For Each row As DataGridViewRow In DataListado.Rows
+                    Dim marcado As Boolean = Convert.ToBoolean(row.Cells("Eliminar").Value)
+                    If marcado Then
+                        Dim onekey As Integer = Convert.ToInt32(row.Cells("id").Value)
+
+                        Dim vdb As New vMetodo
+                        Dim func As New ffuncion
+                        vdb.gid = onekey
+                        If func.eliminar(vdb) Then
+                            ' Si elimina correctamente
+                        Else
+                            MsgBox("Dato no eliminado !!!", 0 + 16, "Error en Proceso...")
+                        End If
+                    End If
+                Next
+                Call Mostrar()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        Else
+            MsgBox("Cancelando eliminación de datos!!!", 0 + 64, "Proceso...")
+            Call Mostrar()
+        End If
+        Call Limpiar()
+    End Sub
+```
+
+_Con esto cubrimos las partes fundamentales de procesos que suceden en los formularios._
+
+## Instalación
+
+_Para la instalación de nuestro sistema, primero es importante conocer los componentes con los que trabajamos para su construcción._
+
+### Construido con:
+
+_Las herramientas necesarias para el desarrollo, compilación, manejo y gestión de este sistema son:_
+
+* [Visual Studio](https://visualstudio.microsoft.com/es/) - Entorno de desarrollo
+* [SQL Server Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) - Administrador de SQL
+* [VB](https://learn.microsoft.com/es-es/dotnet/visual-basic/) - Lenguaje de programación
+* [SQL Server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads) - Base de datos
 
 ## Autores
 
-_Aqui se mencionan a todas las personas que ayudaron y contribuyeron en el desarrollo del sistema_
+* **Kimberly Castro** - *Desarrolladora* 
+* **Hermes Paguaga** - *Desarrollador* 
+* **Ernesto Flores** - *Auditor y Documentación* - [ErnestoFlo](https://github.com/ErnestoFlo)
 
-* **Ernesto Flores** - *Desarrollador Frontend* - [ErnestoFlo](https://github.com/ErnestoFlo)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
-
-## Licencia 
-
-Este proyecto está bajo la licencia (Mi licencia) - Mira el archivo [LICENSE.md](LICENSE.md) para detalles
 
 ## Expresiones de Gratitud 
 
-* Comentarios sobre este proyecto 
-* Menciones y agradecimeintos a miembros del equipo. 
-* Dar las gracias públicamente.
-* etc.
+* Gracias a Kimberly Castro por permitirme auditar y comprender su código para la realización de esta documentación y poder nutrir nuestros portafolios con este proyecto.
